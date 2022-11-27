@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connect4
+  labels:
+    app: connect4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: connect4
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: connect4
+        version: v1
+    spec:
+      containers:
+      - image: docker.io/{YOUR_USERNAME}/{YOUR_DOCKERREPO}:{{IMAGE_TAG}}
+        imagePullPolicy: Always
+        name: connect4
+        ports:
+        - containerPort: 3000
