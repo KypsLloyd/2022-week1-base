@@ -17,7 +17,8 @@ jobs:
     executor: docker-environment
     steps:
     - checkout
-    - setup_remote_docker
+    - setup_remote_docker:
+        docker_layer_caching: true # DLC will explicitly cache layers here and try to avoid rebuilding.
     - run:
         name: "Docker build"
         command: docker build src/connect4-client -t $IMAGE_NAME:$CIRCLE_SHA1
